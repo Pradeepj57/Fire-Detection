@@ -1,6 +1,6 @@
 # Project Summary: Fire Detection System
 
-#FIRE DETECTION
+# FIRE DETECTION
 The aim of this project is to design and implement an image processing system using Arduino Uno, a buzzer, an LED, and an I2C LCD module to enhance fire detection capabilities. The system analyzes visual data in real-time to rapidly and accurately identify fire incidents, thereby mitigating damage and ensuring public safety.
 
 ## Hardware and Software Required
