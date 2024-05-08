@@ -1,0 +1,72 @@
+//code written by Pradeep Jayaraj 23/4/2024 _______
+//Dr.N.G.P Institute Of Technology ____________Coimbatore, TN, INDIA
+
+#include <LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C lcd(0x27,16,2); 
+int LED=12;
+int buz=11;
+int d=0;
+
+int ledState = LOW;  
+unsigned long previousMillis = 0; 
+const long interval = 200;  
+unsigned long previousMillis2 = 0; 
+const long interval2 = 30000;  
+
+void setup() 
+{
+   lcd.init();
+  lcd.clear();         
+  lcd.backlight();   
+  pinMode(LED, OUTPUT);
+  pinMode(buz, OUTPUT);
+  lcd.print("Mini Project");
+  Serial.begin(9600);
+}
+
+void loop()
+ {
+  d=Serial.read();
+ 
+  if(d == 'p' )
+      { 
+        lcd.clear();
+                lcd.setCursor(0,0);
+
+        lcd.print("Fire detected ");
+        Blink();
+      }
+
+   if(d == 's' )
+      {  
+        lcd.clear();
+        lcd.setCursor(0,0);
+        lcd.print("Capturing Video");
+        digitalWrite(LED, LOW); 
+        digitalWrite(buz, LOW); 
+        unsigned long currentMillis2 = millis();
+       
+        delay(5);
+      }
+ 
+ }
+
+void Blink()
+ {
+   unsigned long currentMillis = millis();
+   if (currentMillis - previousMillis >= interval)
+     {
+      previousMillis = currentMillis;
+        if (ledState == LOW)
+        {
+          ledState = HIGH;
+         } else
+         {
+          ledState = LOW;
+          }
+       digitalWrite(LED, ledState);
+       digitalWrite(buz, ledState);
+      }
+  }
+
